@@ -26,7 +26,7 @@ database();
 /* *******************
         Routes
 ******************** */
-app.use("/user", userRoute);
+app.use("/", userRoute);
 app.use("/item", itemRoute);
 
 app.listen(3001, () => {
