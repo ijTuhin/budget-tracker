@@ -22,4 +22,20 @@ router.post("/add", checkLogin, async (req, res) => {
     .catch(() => res.json("Oops! Something went wrong!"));
 });
 
+router.delete("/remove/:id", checkLogin, async (req, res) => {
+  await Item.deleteOne({ _id: req.params.id });
+  await User.updateOne(
+    { _id: req.userId },
+    {
+      $pull: { items: req.params.id },
+    }
+  )
+    .then(() => {
+      res.json("Data deletion successful");
+    })
+    .catch(() => {
+      res.json("Oops! Something went wrong!");
+    });
+});
+
 module.exports = router;

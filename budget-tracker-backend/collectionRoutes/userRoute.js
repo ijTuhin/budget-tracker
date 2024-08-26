@@ -6,7 +6,6 @@ const userSchema = require("../collectionSchemas/userSchema.js");
 const User = new mongoose.model("User", userSchema);
 const checkLogin = require("../Authentications/checkLogin.js");
 
-// admin SIGN-UP & LOG IN from Admin section
 router.post("/signup", async (req, res) => {
   const newUser = new User(req.body);
   await newUser
@@ -22,14 +21,17 @@ router.post("/signup", async (req, res) => {
 });
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email, password: req.body.password });
+    const user = await User.findOne({
+      email: req.body.email,
+      password: req.body.password,
+    });
     if (user) {
       const token = jwt.sign(
         {
           email: user.email,
           userId: user._id,
         },
-        process.env.SECRET_JWT_TOKEN,
+        process.env.SECRET_JWT_TOKEN
       );
 
       res.status(200).json({
@@ -42,6 +44,19 @@ router.post("/login", async (req, res) => {
     console.log("Not found.");
     res.status(401).json("Authentication Failed");
   }
+});
+router.get("/", checkLogin, async (req, res) => {
+  await User.find({ _id: req.userId })
+    .populate("items")
+    .sort({ _id: -1 })
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch(() => {
+      res.status(400).json({
+        error: "Oops! Something went wrong!",
+      });
+    });
 });
 
 module.exports = router;
