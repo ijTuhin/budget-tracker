@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const userRoute = require("./collectionRoutes/userRoute.js");
+const itemRoute = require("./collectionRoutes/itemRoute.js");
 const app = express();
 app.use(cors()); // using middleware
 app.use(express.json()); // to Body parse
@@ -20,6 +22,12 @@ const database = (module.exports = () => {
 });
 
 database();
+
+/* *******************
+        Routes
+******************** */
+app.use("/user", userRoute);
+app.use("/item", itemRoute);
 
 app.listen(3001, () => {
   console.log("Mongoose Server running");
