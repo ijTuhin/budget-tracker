@@ -12,12 +12,12 @@ const UserContext = ({ children }) => {
 
   useEffect(() => {
     console.log("triggered");
-    setAuthUser(localStorage.getItem("user-token"))
+    setAuthUser(localStorage.getItem("user-token"));
   }, [authUser, token, loading]);
 
   const UserSignUp = async (value) => {
     setLoading(true);
-    return await fetch("http://localhost:3001/signup", {
+    return await fetch("https://budget-tracker-58kw.onrender.com/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const UserContext = ({ children }) => {
     try {
       setLoading(true);
       const result = await axios
-        .post(`http://localhost:3001/login`, value)
+        .post(`https://budget-tracker-58kw.onrender.com/login`, value)
         .then((res) => {
           console.log(res?.data);
           if (res?.data?.token) {
@@ -59,41 +59,41 @@ const UserContext = ({ children }) => {
   };
 
   const AddItemsToList = async (value) => {
-    setLoading(true)
-    await fetch("http://localhost:3001/item/add", {
+    setLoading(true);
+    await fetch("https://budget-tracker-58kw.onrender.com/item/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(value)
+      body: JSON.stringify(value),
     })
       .then((response) => response.json())
       .then(() => {
-        setLoading(false)
+        setLoading(false);
         console.log("Successful");
         window.location.reload();
       })
       .catch((e) => console.log(e, token));
-  }
+  };
 
   const DeleteItemFromList = async (id) => {
-    setLoading(true)
-    await fetch(`http://localhost:3001/item/remove/${id}`, {
+    setLoading(true);
+    await fetch(`https://budget-tracker-58kw.onrender.com/item/remove/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-      }
+      },
     })
       .then((response) => response.json())
       .then(() => {
         console.log("Successful");
-        setLoading(false)
+        setLoading(false);
         window.location.reload();
       })
       .catch((e) => console.log(e, token));
-  }
+  };
 
   const logOut = () => {
     setLoading(true);
@@ -109,7 +109,7 @@ const UserContext = ({ children }) => {
     UserSignUp,
     UserLogin,
     AddItemsToList,
-    DeleteItemFromList
+    DeleteItemFromList,
   };
 
   return (

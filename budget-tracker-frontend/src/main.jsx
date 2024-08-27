@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     loader: () => {
-      return fetch(`http://localhost:3001/`, {
+      return fetch(`https://budget-tracker-58kw.onrender.com/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     },
@@ -32,16 +32,14 @@ const router = createBrowserRouter([
     element: <LoginPage />,
     errorElement: <ErrorPage />,
     loader: () => {
-      return fetch(`http://localhost:3001/`, {
+      return fetch(`https://budget-tracker-58kw.onrender.com/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     },
   },
   {
     path: "*",
-    element: (
-      <PageNotFound/>
-    ),
+    element: <PageNotFound />,
     // errorElement: <ErrorPage />,
   },
 ]);
