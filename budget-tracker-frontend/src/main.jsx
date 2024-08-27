@@ -8,9 +8,10 @@ import UserContext from "./authentication/UserContext.jsx";
 import Protected from "./authentication/Protected.jsx";
 import ErrorPage from "./authentication/ErrorPage.jsx";
 import "preline";
+import PageNotFound from "./pages/PageNotFound.jsx";
 
 const token = localStorage.getItem("user-token");
-console.log(token)
+console.log(token);
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,13 @@ const router = createBrowserRouter([
         headers: { Authorization: `Bearer ${token}` },
       });
     },
+  },
+  {
+    path: "*",
+    element: (
+      <PageNotFound/>
+    ),
+    // errorElement: <ErrorPage />,
   },
 ]);
 
