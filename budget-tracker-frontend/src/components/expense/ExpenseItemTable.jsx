@@ -37,15 +37,15 @@ export default function ExpenseItemTable({ list }) {
                     .filter((i) => i.type === 2)
                     .map((i, index) => (
                       <>
-                        <tr>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
-                            {i.name}
+                        <tr key={index}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 capitalize">
+                            {i?.name}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 capitalize">
-                            ${i.amount}
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+                            ${i?.amount}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                            <DeleteItem />
+                            <DeleteItem id={i._id} />
                           </td>
                         </tr>
                       </>

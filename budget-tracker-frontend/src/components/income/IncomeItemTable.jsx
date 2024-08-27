@@ -4,7 +4,9 @@ export default function IncomeItemTable({ list }) {
   console.log(list);
   return (
     <div className="w-1/2">
-      <p className="w-full bg-stone-500 px-5 py-2 text-center text-lg text-gray-100">Income Items</p>
+      <p className="w-full bg-stone-500 px-5 py-2 text-center text-lg text-gray-100">
+        Income Items
+      </p>
       <div className="flex flex-col">
         <div className="-m-1.5 overflow-x-auto">
           <div className="p-1.5 min-w-full inline-block align-middle">
@@ -31,21 +33,21 @@ export default function IncomeItemTable({ list }) {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
-                  {list.filter(i=>i.type === 1).map((i, index) => (
-                    <>
-                      <tr>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 capitalize">
-                          {i.name}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                          ${i.amount}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <DeleteItem/>
-                        </td>
-                      </tr>
-                    </>
-                  ))}
+                  {list?.filter((i) => i.type === 1).map((i, index) => (
+                      <>
+                        <tr key={index}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 capitalize">
+                            {i?.name}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+                            ${i?.amount}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                            <DeleteItem id={i._id} />
+                          </td>
+                        </tr>
+                      </>
+                    ))}
                 </tbody>
               </table>
             </div>

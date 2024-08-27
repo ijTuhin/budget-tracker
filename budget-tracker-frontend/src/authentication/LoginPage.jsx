@@ -1,7 +1,37 @@
 import { useState } from "react";
 import { FaCoins } from "react-icons/fa";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { useAuthUser } from "./UserContext";
 export default function LoginPage() {
+  const {loading, UserSignUp, UserLogin, authUser } = useAuthUser();
+  const data = useLoaderData()
+  console.log(data.name, authUser)
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(0);
+  const handleFormSubmission = (e) => {
+    e.preventDefault();
+    const value = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    if (!toggle) {
+      UserLogin({
+        email: e.target.email.value,
+        password: e.target.password.value,
+      });
+      navigate("/", { replace: true });
+    }
+    else {
+      UserSignUp({
+        name: e.target.name.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      });
+      navigate("/", { replace: true });
+    }
+    console.log(value);
+  };
   return (
     <main className="w-full flex justify-center">
       <div className="mt-20 py-10 px-10 shadow-lg w-[30rem] space-y-6">
@@ -11,11 +41,13 @@ export default function LoginPage() {
           </span>
           Budget Tracker - {toggle ? "Sign up" : "Login"}
         </h1>
-        <div className="max-w-sm space-y-3">
+        <form onSubmit={handleFormSubmission} className="max-w-sm space-y-3">
           {toggle ? (
             <div className="relative">
               <input
                 type="text"
+                name="name"
+                id="name"
                 className="peer py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm outline-green-500"
                 placeholder="Enter name"
               />
@@ -44,6 +76,8 @@ export default function LoginPage() {
           <div className="relative">
             <input
               type="email"
+              name="email"
+              id="email"
               className="peer py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm outline-green-500"
               placeholder="Email address"
             />
@@ -69,6 +103,8 @@ export default function LoginPage() {
           <div className="relative">
             <input
               type="password"
+              name="password"
+              id="password"
               className="peer py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm outline-green-500"
               placeholder="Enter password"
             />
@@ -92,6 +128,7 @@ export default function LoginPage() {
           </div>
           <div className="w-full flex justify-start text-xs">
             <button
+              type="button"
               onClick={() => setToggle(!toggle)}
               className="text-green-500 hover:underline hover:underline-offset-4 font-semibold"
             >
@@ -99,11 +136,15 @@ export default function LoginPage() {
             </button>
           </div>
           <div className="w-full flex justify-end">
-            <button className="px-5 py-2 rounded bg-gray-300 text-white hover:text-gray-50 hover:bg-green-500">
+            <button
+              type="submit"
+              className="px-5 py-2 rounded bg-gray-300 text-white hover:text-gray-50 hover:bg-green-500"
+            >
               {toggle ? "Sign up" : "Login"}
             </button>
           </div>
-        </div>
+          {loading ? <p className="font-bold text-red-600 text-lg">Loading</p> : <></>}
+        </form>
       </div>
     </main>
   );

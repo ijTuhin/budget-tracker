@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
+import "preline";
+import { useAuthUser } from "../authentication/UserContext";
 export default function AddItems({ setList, list }) {
-  //   const [type, setType] = useState("Choose Type");
+  const { AddItemsToList } = useAuthUser();
   const [item, setItem] = useState({
     type: null,
     name: null,
@@ -9,10 +10,8 @@ export default function AddItems({ setList, list }) {
   });
   const handleAddItemToList = () => {
     console.log(item);
-    // useEffect(() => {
-      setList(list.concat(item));
-    // }, []);
-    console.log(list);
+    AddItemsToList(item);
+    setList(list?.concat(item));
   };
   return (
     <section className="px-5 py-8 shadow-lg rounded col-span-2 space-y-3">
@@ -58,7 +57,7 @@ export default function AddItems({ setList, list }) {
                   type: 1,
                 })
               }
-              className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+              className="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
             >
               Income
             </button>
@@ -69,7 +68,7 @@ export default function AddItems({ setList, list }) {
                   type: 2,
                 })
               }
-              className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+              className="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
             >
               Expense
             </button>
@@ -85,6 +84,7 @@ export default function AddItems({ setList, list }) {
           className="w-40 p-3 border border-gray-200 rounded outline-gray-400"
           type="text"
           placeholder="Item"
+          required
         />
         <input
           onChange={(e) =>
@@ -97,13 +97,24 @@ export default function AddItems({ setList, list }) {
           type="number"
           name="amount"
           id="amount"
+          placeholder="Amount"
+          required
         />
-        <button
-          onClick={handleAddItemToList}
-          className="px-10 py-3 border bg-gray-300 text-gray-600 hover:bg-green-600 hover:text-gray-200 rounded"
-        >
-          Add
-        </button>
+        {!item.type || !item.name || !item.amount ? (
+          <button
+            disabled
+            className="px-10 py-3 border cursor-not-allowed bg-gray-300 text-gray-600 rounded"
+          >
+            Add
+          </button>
+        ) : (
+          <button
+            onClick={handleAddItemToList}
+            className="px-10 py-3 border bg-gray-300 text-gray-600 hover:bg-green-600 hover:text-gray-200 rounded"
+          >
+            Add
+          </button>
+        )}
       </div>
     </section>
   );

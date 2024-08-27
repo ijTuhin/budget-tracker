@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
 
       res.status(200).json({
         token: token,
-        role: user.role,
+        id: user._id,
         message: "Login Successful",
       });
     } else console.log("User not found");
@@ -46,11 +46,12 @@ router.post("/login", async (req, res) => {
   }
 });
 router.get("/", checkLogin, async (req, res) => {
-  await User.find({ _id: req.userId })
+  await User.findOne({ _id: req.userId })
     .populate("items")
     .sort({ _id: -1 })
     .then((data) => {
       res.status(200).json(data);
+      console.log(data)
     })
     .catch(() => {
       res.status(400).json({
