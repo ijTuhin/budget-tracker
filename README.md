@@ -35,4 +35,4 @@ npm run dev
 > **email:** sadia@acc.com **password:** 1212
 ___________________________________________________________
 ### Important links ###
-> *[Live Website](https://mess-meal-management-7b408.web.app/)*
+> *[Live Website](https://budget-tracker-4ll8vuro5-ijtuhins-projects.vercel.app/)*
