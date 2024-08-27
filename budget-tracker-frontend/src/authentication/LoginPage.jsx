@@ -2,35 +2,31 @@ import { useState } from "react";
 import { FaCoins } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useAuthUser } from "./UserContext";
+import Spinner from "../components/Spinner";
 export default function LoginPage() {
-  const {loading, UserSignUp, UserLogin, authUser } = useAuthUser();
-  const data = useLoaderData()
-  console.log(data.name, authUser)
+  const { loading, UserSignUp, UserLogin, authUser } = useAuthUser();
+  const data = useLoaderData();
+  console.log(data.name, authUser);
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(0);
   const handleFormSubmission = (e) => {
     e.preventDefault();
-    const value = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-    };
     if (!toggle) {
       UserLogin({
         email: e.target.email.value,
         password: e.target.password.value,
       });
-      navigate("/", { replace: true });
-    }
-    else {
+      navigate("/");
+    } else {
       UserSignUp({
         name: e.target.name.value,
         email: e.target.email.value,
         password: e.target.password.value,
       });
-      navigate("/", { replace: true });
+      // setToggle(!toggle)
+      // navigate("/login", { replace: true });
+      window.location.reload();
     }
-    console.log(value);
   };
   return (
     <main className="w-full flex justify-center">
@@ -49,7 +45,7 @@ export default function LoginPage() {
                 name="name"
                 id="name"
                 className="peer py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm outline-green-500"
-                placeholder="Enter name"
+                placeholder="Enter name" required
               />
               <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
                 <svg
@@ -79,7 +75,7 @@ export default function LoginPage() {
               name="email"
               id="email"
               className="peer py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm outline-green-500"
-              placeholder="Email address"
+              placeholder="Email address" required
             />
             <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
               <svg
@@ -106,7 +102,7 @@ export default function LoginPage() {
               name="password"
               id="password"
               className="peer py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm outline-green-500"
-              placeholder="Enter password"
+              placeholder="Enter password" required
             />
             <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
               <svg
@@ -143,9 +139,9 @@ export default function LoginPage() {
               {toggle ? "Sign up" : "Login"}
             </button>
           </div>
-          {loading ? <p className="font-bold text-red-600 text-lg">Loading</p> : <></>}
         </form>
       </div>
+      <Spinner loading={loading} />
     </main>
   );
 }

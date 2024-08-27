@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "66cd0272967c4660c8f2a516"
+  },
+  "name": "Israt Tuhin",
+  "email": "abc@acc.com",
+  "password": "1212",
+  "items": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "66cd0611b262cd9debf3c9d7"
+  },
+  "name": "Tanvir Rafi",
+  "email": "abcde@acc.com",
+  "password": "1212",
+  "items": [
+    {
+      "$oid": "66cd072e710c0e2c22b6eeb2"
+    },
+    {
+      "$oid": "66cd073a710c0e2c22b6eeb5"
+    },
+    {
+      "$oid": "66cdb61c1294aed2192c813a"
+    },
+    {
+      "$oid": "66cdb7001294aed2192c8144"
+    },
+    {
+      "$oid": "66cdb7251294aed2192c8149"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "66cdbed300356c6f7001dbf5"
+  },
+  "name": "Sadia Ahmed",
+  "email": "sadia@acc.com",
+  "password": "1212",
+  "items": [
+    {
+      "$oid": "66cdbf1100356c6f7001dbf9"
+    },
+    {
+      "$oid": "66cdbf2600356c6f7001dbfe"
+    }
+  ],
+  "__v": 0
+}]

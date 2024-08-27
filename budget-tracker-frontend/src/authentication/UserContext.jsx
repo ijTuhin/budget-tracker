@@ -22,12 +22,11 @@ const UserContext = ({ children }) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        // Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(value),
     })
       .then((response) => response.json())
-      .then((i) => {
+      .then(() => {
         console.log("DB Success");
         setLoading(false);
       })

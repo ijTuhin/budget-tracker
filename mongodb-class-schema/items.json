@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "66cd072e710c0e2c22b6eeb2"
+  },
+  "type": 2,
+  "name": "egg",
+  "amount": 120,
+  "user": {
+    "$oid": "66cd0611b262cd9debf3c9d7"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "66cd073a710c0e2c22b6eeb5"
+  },
+  "type": 2,
+  "name": "rice",
+  "amount": 1200,
+  "user": {
+    "$oid": "66cd0611b262cd9debf3c9d7"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "66cdb61c1294aed2192c813a"
+  },
+  "type": 2,
+  "name": "Oats",
+  "amount": 300,
+  "user": {
+    "$oid": "66cd0611b262cd9debf3c9d7"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "66cdb7251294aed2192c8149"
+  },
+  "type": 1,
+  "name": "salary",
+  "amount": 10000,
+  "user": {
+    "$oid": "66cd0611b262cd9debf3c9d7"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "66cdbf1100356c6f7001dbf9"
+  },
+  "type": 1,
+  "name": "salary",
+  "amount": 12000,
+  "user": {
+    "$oid": "66cdbed300356c6f7001dbf5"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "66cdbf2600356c6f7001dbfe"
+  },
+  "type": 2,
+  "name": "Rent",
+  "amount": 3000,
+  "user": {
+    "$oid": "66cdbed300356c6f7001dbf5"
+  },
+  "__v": 0
+}]

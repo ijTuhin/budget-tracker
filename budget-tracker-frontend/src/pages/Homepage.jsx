@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthUser } from "../authentication/UserContext";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import Spinner from "../components/Spinner";
 export default function Homepage() {
   const { loading } = useAuthUser();
   const navigate = useNavigate();
@@ -52,15 +53,7 @@ export default function Homepage() {
           {/* Add Item */}
           <AddItems setList={setList} list={list} />
         </div>
-        <div className="flex justify-center py-6 invisible">
-          <div
-            className="animate-spin inline-block size-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
-            role="status"
-            aria-label="loading"
-          >
-            <span className="sr-only">Loading...</span>
-          </div>
-        </div>
+        <Spinner loading={loading}/>
         <div className="flex gap-x-32 px-20">
           {/* Income Items */}
           <IncomeItemTable list={list} />
