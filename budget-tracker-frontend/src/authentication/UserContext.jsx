@@ -17,7 +17,7 @@ const UserContext = ({ children }) => {
 
   const UserSignUp = async (value) => {
     setLoading(true);
-    return await fetch("https://budget-tracker-58kw.onrender.com/signup", {
+    return await fetch("https://budget-tracker-0y7t.onrender.com/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const UserContext = ({ children }) => {
     try {
       setLoading(true);
       const result = await axios
-        .post(`https://budget-tracker-58kw.onrender.com/login`, value)
+        .post(`https://budget-tracker-0y7t.onrender.com/login`, value)
         .then((res) => {
           console.log(res?.data);
           if (res?.data?.token) {
@@ -60,7 +60,7 @@ const UserContext = ({ children }) => {
 
   const AddItemsToList = async (value) => {
     setLoading(true);
-    await fetch("https://budget-tracker-58kw.onrender.com/item/add", {
+    await fetch("https://budget-tracker-0y7t.onrender.com/item/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const UserContext = ({ children }) => {
 
   const DeleteItemFromList = async (id) => {
     setLoading(true);
-    await fetch(`https://budget-tracker-58kw.onrender.com/item/remove/${id}`, {
+    await fetch(`https://budget-tracker-0y7t.onrender.com/item/remove/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
